@@ -1,0 +1,13 @@
+.basket {
+    background-color: #363534;
+
+    position: fixed;
+    bottom: 150px;
+    right: 0px;
+
+    height: 700px;
+    width: 400px;
+    border-radius: 30px;
+
+    text-align: center;
+}

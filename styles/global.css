@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Palanquin", sans-serif;
+}
+
+.landing>img {
+    position: relative;
+    top: -100px;
+    left: min(50rem, 50%);
+    right: min(50rem, 50%);
+
+    height: 200px;
+    width: 200px;
+}
+
+.landing-text {
+    font-size: 50px;
+    padding-top: 60px;
+    padding-left: 280px;
+    padding-right: 280px;
+    padding-bottom: 80px;
+}

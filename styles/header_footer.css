@@ -1,0 +1,38 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #E76C1F;
+}
+
+header>img{
+    width: 95px;
+    height: 40px;
+}
+
+nav>img{
+    height: 60px;
+    width: 60px;
+}
+
+.landing-container>img{
+    width: 100%;
+}
+
+.landing-text{
+    font-size: 50px;
+    padding-top: 60px;
+    padding-left: 280px;
+    padding-right: 280px;
+    padding-bottom: 80px;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    padding: 20px;
+    background-color: #E76C1F;
+}
