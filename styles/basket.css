@@ -1,9 +1,9 @@
 .basket {
     background-color: #363534;
 
-    position: fixed;
+    position: sticky;
     bottom: 150px;
-    right: 0px;
+    left: 100%;
 
     height: 700px;
     width: 400px;

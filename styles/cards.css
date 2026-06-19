@@ -1,17 +1,42 @@
 .category-burger {
 background-color: #E76C1F;
-padding: 10px;
 margin-bottom: 10px;
+height: 60px;
+}
+
+.category-burger > img {
+height: 100px;
+align-self: end;
 }
 
 .category-pizza {
 background-color: #E76C1F;
-padding: 10px;
 margin-bottom: 10px;
+height: 60px;
+}
+
+.category-pizza > img {
+height: 100px;
+align-self: end;
 }
 
 .category-salads {
 background-color: #E76C1F;
-padding: 10px;
 margin-bottom: 10px;
+height: 60px;
+}
+
+.category-salads > img {
+height: 100px;
+align-self: end;
+}
+
+.menu-item {
+background-color: #FDEADC;
+border-radius: 12px;
+padding: 20px;
+margin-bottom: 10px;
+
+width: 700px;
+margin-left: 100px;
 }
