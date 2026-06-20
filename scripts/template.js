@@ -7,7 +7,7 @@ function renderMenu(category) {
                 <h4>${item.name}</h4>
                 <p>${item.description}</p>
                 <p>$${item.price.toFixed(2)}</p>
-                <button>Add to Basket</button>
+                <button onclick="addToBasket({ id: ${item.id}, name: '${item.name}', price: ${item.price} })">Add to Basket</button>
             </div>
         `;
     });
