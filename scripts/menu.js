@@ -1,19 +1,24 @@
 let menu = {         
     "burger": [
         {
-            "name": "Classic Burger",
-            "description": "Juicy beef patty with lettuce, tomato, and our special sauce.",
-            "price": 8.99
+            "name": "Veggie mushroom black burger",
+            "description": "Mixed green salad, Tomatoes, Edamame, Mushrooms.",
+            "price": 16.90
         },
         {
-            "name": "Cheese Burger",
-            "description": "Classic burger topped with melted cheddar cheese.",
-            "price": 9.49
+            "name": "All meat burger",
+            "description": "Beef, Bacon, Dill pickles, Smoked cheese, Ketchup, BBQ sauce.",
+            "price": 15.90
         },
         {
-            "name": "Veggie Burger",
-            "description": "Grilled veggie patty with fresh vegetables and a tangy sauce.",
-            "price": 7.99
+            "name": "Beef red burger",
+            "description": "Beef, Cheese, Tomatoes, Lettuce, Onion.",
+            "price": 14.90
+        },
+        {
+            "name": "Blg chicken burger",
+            "description": "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper.",
+            "price": 15.90
         }
     ],
     "pizza": [
@@ -31,6 +36,11 @@ let menu = {
             "name": "Vegetarian Pizza",
             "description": "Tomato sauce, mozzarella cheese, and a variety of fresh vegetables.",
             "price": 13.99
+        },
+        {
+            "name": "Vegetarian Pizza",
+            "description": "Tomato sauce, mozzarella cheese, and a variety of fresh vegetables.",
+            "price": 13.99
         }
     ],
     "salads": [
@@ -43,6 +53,11 @@ let menu = {
             "name": "Greek Salad",
             "description": "Mixed greens with feta cheese, olives, cucumbers, and Greek dressing.",
             "price": 8.49
+        },
+        {
+            "name": "Garden Salad",
+            "description": "Fresh mixed greens with tomatoes, cucumbers, carrots, and your choice of dressing.",
+            "price": 6.99
         },
         {
             "name": "Garden Salad",

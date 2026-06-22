@@ -23,17 +23,18 @@ function renderBasket() {
             totalPrice += itemTotal;
             row.innerHTML = `
                 <td>${item.name}</td>
-                <td>$${item.price}</td>
+                <td>${item.price.toFixed(2)}</td>
                 <td>${item.quantity}</td>
-                <td>$${itemTotal}</td>
+                <td>${itemTotal.toFixed(2)}</td>
                 <td><button onclick="removeFromBasket(${index})">Remove</button></td>
+                
             `;
             table.appendChild(row);
         });
         const totalRow = document.createElement('tr');
         totalRow.innerHTML = `
             <td colspan="3"><strong>Total</strong></td>
-            <td><strong>$${totalPrice}</strong></td>
+            <td><strong>$${totalPrice.toFixed(2)}</strong></td>
             <td></td>
         `;
         table.appendChild(totalRow);
@@ -71,3 +72,40 @@ function removeFromBasket(index) {
 function init() {
     renderBasket()
 }
+
+function openCheckout() {
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    const container = document.getElementById('checkoutItems');
+    const totalText = document.getElementById('checkoutTotal');
+
+    container.innerHTML = '';
+
+    let total = 0;
+
+    basket.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        container.innerHTML += `
+            <p>
+                ${item.name} x ${item.quantity} = $${itemTotal.toFixed(2)}
+            </p>
+        `;
+    });
+
+    totalText.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+
+    document.getElementById('checkoutModal').classList.remove('hidden');
+}
+
+window.confirmOrder = function () {
+    localStorage.removeItem('basket');
+    renderBasket();
+    closeModal();
+    alert("Bestellung erfolgreich!");
+};
+
+window.closeModal = function () {
+    document.getElementById('checkoutModal').classList.add('hidden');
+};

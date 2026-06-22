@@ -56,11 +56,41 @@
 
                 </div>
 
-                <button>Buy Now</button>
+                <button onclick="openCheckout()">Buy Now</button>
             </section>
         </div>
 
+        <div id="checkoutModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Deine Bestellung</h2>
+
+                <div id="checkoutItems"></div>
+
+                <p id="checkoutTotal"></p>
+
+                <p>Willst du diese Bestellung aufgeben?</p>
+
+                <button onclick="confirmOrder()">Ja, bestellen</button>
+                <button onclick="closeModal()">Nein</button>
+            </div>
+        </div>
+
     </main>
+
+    <div id="checkoutModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Deine Bestellung</h2>
+
+            <div id="checkoutItems"></div>
+
+            <p id="checkoutTotal"></p>
+
+            <p>Willst du diese Bestellung aufgeben?</p>
+
+            <button onclick="confirmOrder()">Ja, bestellen</button>
+            <button onclick="closeModal()">Nein</button>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2023 BurgerHouse</p>
