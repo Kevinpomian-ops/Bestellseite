@@ -1,13 +1,13 @@
 function renderMenu(category) {
     const items = menu[category];
     let html = '';
-    items.forEach(item => {
+    items.forEach((item, index) => {
         html += `
-            <div class="menu-item">
+            <div class="menu-item" id="menu-${category}-${index}">
                 <h4>${item.name}</h4>
                 <p>${item.description}</p>
                 <p>$${item.price.toFixed(2)}</p>
-                <button onclick="addToBasket({ id: ${item.id}, name: '${item.name}', price: ${item.price} })">Add to Basket</button>
+                <button onclick="addToBasketByIndex('${category}', ${index})">Add to Basket</button>
             </div>
         `;
     });

@@ -1,6 +1,6 @@
 function renderBasket() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
-    const basketContainer = document.getElementById('basket-container');
+    const basketContainer = document.getElementById('basket');
     basketContainer.innerHTML = '';
     if (basket.length === 0) {
         basketContainer.innerHTML = '<p>Your basket is empty.</p>';
@@ -23,9 +23,9 @@ function renderBasket() {
             totalPrice += itemTotal;
             row.innerHTML = `
                 <td>${item.name}</td>
-                <td>$${item.price.toFixed(2)}</td>
+                <td>$${item.price}</td>
                 <td>${item.quantity}</td>
-                <td>$${itemTotal.toFixed(2)}</td>
+                <td>$${itemTotal}</td>
                 <td><button onclick="removeFromBasket(${index})">Remove</button></td>
             `;
             table.appendChild(row);
@@ -33,7 +33,7 @@ function renderBasket() {
         const totalRow = document.createElement('tr');
         totalRow.innerHTML = `
             <td colspan="3"><strong>Total</strong></td>
-            <td><strong>$${totalPrice.toFixed(2)}</strong></td>
+            <td><strong>$${totalPrice}</strong></td>
             <td></td>
         `;
         table.appendChild(totalRow);
@@ -50,6 +50,15 @@ function addToBasket(product) {
         basket.push({ ...product, quantity: 1 });
     }
     localStorage.setItem('basket', JSON.stringify(basket));
+    renderBasket();
+}
+function addToBasketByIndex(category, index) {
+    const product = {
+        ...menu[category][index],
+        id: `${category}-${index}`
+    };
+
+    addToBasket(product);
 }
 
 function removeFromBasket(index) {
@@ -59,3 +68,6 @@ function removeFromBasket(index) {
     renderBasket();
 }
 
+function init() {
+    renderBasket()
+}
