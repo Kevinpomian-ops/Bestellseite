@@ -1,42 +1,128 @@
-.category-burger {
-background-color: #E76C1F;
-margin-bottom: 10px;
-height: 60px;
-}
-
-.category-burger > img {
-height: 100px;
-align-self: end;
-}
-
-.category-pizza {
-background-color: #E76C1F;
-margin-bottom: 10px;
-height: 60px;
-}
-
-.category-pizza > img {
-height: 100px;
-align-self: end;
-}
-
+.category-burger,
+.category-pizza,
 .category-salads {
-background-color: #E76C1F;
-margin-bottom: 10px;
-height: 60px;
+    background-color: #E76C1F;
+    margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    overflow: visible;
 }
 
-.category-salads > img {
-height: 100px;
-align-self: end;
+.category-burger>img,
+.category-pizza>img,
+.category-salads>img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-top: -10px;
+}
+
+.category-burger h3,
+.category-pizza h3,
+.category-salads h3 {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
 }
 
 .menu-item {
-background-color: #FDEADC;
-border-radius: 12px;
-padding: 20px;
-margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    background-color: #FDEADC;
+    border-radius: 24px;
+    padding: 18px 20px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    margin-bottom: 16px;
+    width: 70%;
+}
 
-width: 700px;
-margin-left: 100px;
+.menu-item-image {
+    width: 120px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-item-info {
+    display: grid;
+    gap: 8px;
+}
+
+.menu-item-info h4 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.menu-item-info p {
+    margin: 0;
+    color: #5d5348;
+    line-height: 1.45;
+    font-size: 0.95rem;
+}
+
+.menu-item-price {
+    display: grid;
+    gap: 10px;
+    justify-items: end;
+}
+
+.menu-item-price span {
+    font-weight: 700;
+    color: #e76c1f;
+    font-size: 1rem;
+}
+
+.menu-item button {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 860px) {
+    .menu-item {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-item-price {
+        justify-items: start;
+    }
+}
+
+
+
+@media (max-width: 780px) {
+
+    .category-burger h3,
+    .category-pizza h3,
+    .category-salads h3 {
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .menu-item {
+        width: 100%;
+    }
 }

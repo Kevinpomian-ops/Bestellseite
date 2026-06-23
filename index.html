@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-<body onload="init()">
+<body>
     <header>
         <img src="./assets/icon/Logo 02.png" alt="Logo">
         <nav>
             <img src="./assets/icon/menu.png" alt="Cart">
         </nav>
     </header>
+
+
 
     <div class="landing-container">
         <img src="./assets/img/hero.png" alt="Hero Image">
@@ -29,38 +31,34 @@
     </div>
 
     <main>
-        <div>
-            <div class="category-burger flex">
-                <img src="./assets/icon/Chanese 1.png" alt="Burger">
-                <h3>Burger & Sandwiches</h3>
-            </div>
-            <div id="burger"></div>
-            <div class="category-pizza flex">
-                <img src="./assets/icon/Pizza 1.png" alt="Pizza">
-                <h3>Pizza (30cm)</h3>
-            </div>
-            <div id="pizza"></div>
-            <div class="category-salads flex">
-                <img src="./assets/icon/Salad 1.png" alt="Salads">
-                <h3>Salads</h3>
-            </div>
-            <div id="salads"></div>
+
+            <section class="menu-column">
+                <div class="category-burger flex content-grid">
+                    <img src="./assets/icon/Chanese 1.png" alt="Burger">
+                    <h3>Burger & Sandwiches</h3>
+                </div>
+                <div id="burger"></div>
+                <div class="category-pizza flex content-grid">
+                    <img src="./assets/icon/Pizza 1.png" alt="Pizza">
+                    <h3>Pizza (30cm)</h3>
+                </div>
+                <div id="pizza"></div>
+                <div class="category-salads flex content-grid">
+                    <img src="./assets/icon/Salad 1.png" alt="Salads">
+                    <h3>Salads</h3>
+                </div>
+                <div id="salads"></div>
+            </section>
 
             <section class="basket">
                 <h3>Your Basket</h3>
-                <div id="basket">
-
-                </div>
-
-                <div>
-
-                </div>
-
-                <button onclick="openCheckout()">Buy Now</button>
+                <div class="basket-list" id="basket"></div>
+                <div class="basket-summary" id="basketSummary"></div>
+                <button id="checkoutButton" onclick="openCheckout()">Buy now</button>
             </section>
-        </div>
 
-        <div id="checkoutModal" class="modal hidden">
+
+            <div id="checkoutModal" class="modal hidden">
             <div class="modal-content">
                 <h2>Deine Bestellung</h2>
 
@@ -73,34 +71,25 @@
                 <button onclick="confirmOrder()">Ja, bestellen</button>
                 <button onclick="closeModal()">Nein</button>
             </div>
-        </div>
 
     </main>
 
-    <div id="checkoutModal" class="modal hidden">
-        <div class="modal-content">
-            <h2>Deine Bestellung</h2>
-
-            <div id="checkoutItems"></div>
-
-            <p id="checkoutTotal"></p>
-
-            <p>Willst du diese Bestellung aufgeben?</p>
-
-            <button onclick="confirmOrder()">Ja, bestellen</button>
-            <button onclick="closeModal()">Nein</button>
-        </div>
-    </div>
-
     <footer>
         <p>&copy; 2023 BurgerHouse</p>
-        <a href="#">Imprint</a>
+        <a href="./impressum.html">Impressum</a>
         <a href="#">Cookie Preferences</a>
     </footer>
+
+    <!-- Bottom navigation for mobile -->
+    <nav class="bottom-nav" id="bottomNav" aria-label="Mobile navigation">
+        <button class="nav-btn" id="navHome"><img src="./assets/icon/home.svg" alt="Home"></button>
+        <button class="nav-btn" id="navSearch"><img src="./assets/icon/dinner.svg" alt="Diner"></button>
+        <button class="nav-btn" id="navBasket"><img src="./assets/icon/basket.svg" alt="Basket"></button>
+        <button class="nav-btn" id="navProfile"><img src="./assets/icon/profile.svg" alt="Profile"></button>
+    </nav>
 </body>
-<script src="./scripts/script.js"></script>
-<script src="./scripts/basket.js"></script>
 <script src="./scripts/menu.js"></script>
 <script src="./scripts/template.js"></script>
+<script src="./scripts/basket.js"></script>
 
 </html>

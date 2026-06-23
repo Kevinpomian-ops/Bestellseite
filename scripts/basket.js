@@ -1,45 +1,27 @@
 function renderBasket() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
     const basketContainer = document.getElementById('basket');
+    const basketSummary = document.getElementById('basketSummary');
+    const checkoutButton = document.getElementById('checkoutButton');
     basketContainer.innerHTML = '';
+    basketSummary.innerHTML = '';
+
     if (basket.length === 0) {
-        basketContainer.innerHTML = '<p>Your basket is empty.</p>';
+        basketContainer.innerHTML = renderEmptyBasket();
+        checkoutButton.textContent = 'Buy now';
         return;
-    } else {
-        const table = document.createElement('table');
-        const headerRow = document.createElement('tr');
-        headerRow.innerHTML = `
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Actions</th>
-        `;
-        table.appendChild(headerRow);
-        let totalPrice = 0;
-        basket.forEach((item, index) => {
-            const row = document.createElement('tr');
-            const itemTotal = item.price * item.quantity;
-            totalPrice += itemTotal;
-            row.innerHTML = `
-                <td>${item.name}</td>
-                <td>${item.price.toFixed(2)}</td>
-                <td>${item.quantity}</td>
-                <td>${itemTotal.toFixed(2)}</td>
-                <td><button onclick="removeFromBasket(${index})">Remove</button></td>
-                
-            `;
-            table.appendChild(row);
-        });
-        const totalRow = document.createElement('tr');
-        totalRow.innerHTML = `
-            <td colspan="3"><strong>Total</strong></td>
-            <td><strong>$${totalPrice.toFixed(2)}</strong></td>
-            <td></td>
-        `;
-        table.appendChild(totalRow);
-        basketContainer.appendChild(table);
     }
+
+    let subtotal = 0;
+    basket.forEach((item, index) => {
+        basketContainer.innerHTML += renderBasketItem(item, index);
+        subtotal += item.price * item.quantity;
+    });
+
+    const deliveryFee = 4.99;
+    const total = subtotal + deliveryFee;
+    basketSummary.innerHTML = renderBasketSummary(subtotal, deliveryFee, total);
+    checkoutButton.textContent = `Buy now (${formatPrice(total)})`;
 }
 
 function addToBasket(product) {
@@ -52,7 +34,20 @@ function addToBasket(product) {
     }
     localStorage.setItem('basket', JSON.stringify(basket));
     renderBasket();
+    renderAllMenus();
 }
+
+function addOneToBasket(itemId) {
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const itemIndex = basket.findIndex(item => item.id === itemId);
+    if (itemIndex !== -1) {
+        basket[itemIndex].quantity += 1;
+        localStorage.setItem('basket', JSON.stringify(basket));
+        renderBasket();
+        renderAllMenus();
+    }
+}
+
 function addToBasketByIndex(category, index) {
     const product = {
         ...menu[category][index],
@@ -67,10 +62,7 @@ function removeFromBasket(index) {
     basket.splice(index, 1);
     localStorage.setItem('basket', JSON.stringify(basket));
     renderBasket();
-}
-
-function init() {
-    renderBasket()
+    renderAllMenus();
 }
 
 function openCheckout() {
@@ -84,24 +76,130 @@ function openCheckout() {
     let total = 0;
 
     basket.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-
-        container.innerHTML += `
-            <p>
-                ${item.name} x ${item.quantity} = $${itemTotal.toFixed(2)}
-            </p>
-        `;
+        container.innerHTML += renderCheckoutItem(item);
+        total += item.price * item.quantity;
     });
 
-    totalText.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+    totalText.innerHTML = renderCheckoutTotal(total);
+
+    // close mobile basket overlay before opening checkout dialog
+    if (typeof window.hideMobileBasketPanel === 'function') {
+        window.hideMobileBasketPanel();
+    }
 
     document.getElementById('checkoutModal').classList.remove('hidden');
 }
 
+function init() {
+    renderAllMenus();
+    renderBasket();
+}
+
+window.addEventListener('DOMContentLoaded', init);
+
+// Mobile: toggle basket panel via bottom nav basket button; hide when clicking outside
+function enableMobileBasketToggle() {
+    const basketPanel = document.querySelector('.basket');
+    const navBasketBtn = document.getElementById('navBasket');
+    if (!basketPanel || !navBasketBtn) return;
+
+    const mobileQuery = window.matchMedia('(max-width: 760px)');
+
+    function showBasket() {
+        basketPanel.classList.add('mobile-visible');
+        setTimeout(() => document.body.addEventListener('click', outsideClick, true), 0);
+    }
+
+    function hideBasket() {
+        basketPanel.classList.remove('mobile-visible');
+        document.body.removeEventListener('click', outsideClick, true);
+    }
+
+    // expose hide function so Buy now can close the panel
+    window.hideMobileBasketPanel = hideBasket;
+
+    function outsideClick(e) {
+        if (e.target.closest('.basket')) return;
+        if (e.target.closest('#navBasket')) return;
+        if (e.target.closest('.bottom-nav')) return;
+        hideBasket();
+    }
+
+    navBasketBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!mobileQuery.matches) return;
+        if (basketPanel.classList.contains('mobile-visible')) hideBasket(); else showBasket();
+    });
+
+    mobileQuery.addEventListener('change', (ev) => {
+        if (!ev.matches) {
+            // leaving mobile: ensure basket visible in desktop layout and cleanup
+            hideBasket();
+            basketPanel.style.display = '';
+        } else {
+            // entering mobile: ensure panel hidden until toggled
+            hideBasket();
+        }
+    });
+
+    // initial state
+    if (mobileQuery.matches) hideBasket();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    enableMobileBasketToggle();
+    window.addEventListener('resize', enableMobileBasketToggle);
+});
+
+// Fallback: if nav images are missing, replace them with emoji
+function setupNavIconFallback() {
+    const map = {
+        navHome: '🏠',
+        navSearch: '🔍',
+        navBasket: '🧺',
+        navProfile: '👤'
+    };
+    document.querySelectorAll('.bottom-nav .nav-btn img').forEach(img => {
+        img.addEventListener('error', () => {
+            const btn = img.closest('.nav-btn');
+            if (!btn) return;
+            try { btn.removeChild(img); } catch (e) {}
+            btn.textContent = map[btn.id] || '';
+        });
+    });
+}
+
+window.addEventListener('DOMContentLoaded', setupNavIconFallback);
+
+function preventBottomNavOverlap() {
+    const bottomNav = document.getElementById('bottomNav');
+    const footer = document.querySelector('footer');
+    if (!bottomNav || !footer) return;
+
+    function updateBottomNav() {
+        const footerRect = footer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const minBottom = 12;
+        let bottom = minBottom;
+
+        if (footerRect.top < viewportHeight) {
+            bottom = Math.max(minBottom, viewportHeight - footerRect.top + minBottom);
+        }
+
+        bottomNav.style.bottom = `${bottom}px`;
+    }
+
+    window.addEventListener('scroll', updateBottomNav);
+    window.addEventListener('resize', updateBottomNav);
+    updateBottomNav();
+}
+
+window.addEventListener('DOMContentLoaded', preventBottomNavOverlap);
+
 window.confirmOrder = function () {
     localStorage.removeItem('basket');
     renderBasket();
+    renderAllMenus();
     closeModal();
     alert("Bestellung erfolgreich!");
 };

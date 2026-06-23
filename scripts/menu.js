@@ -1,68 +1,81 @@
-let menu = {         
+let menu = {
     "burger": [
         {
             "name": "Veggie mushroom black burger",
-            "description": "Mixed green salad, Tomatoes, Edamame, Mushrooms.",
-            "price": 16.90
+            "description": "Mixed green salad, tomatoes, edamame, mushrooms.",
+            "price": 16.90,
+            "image": "Veggie mushroom black burger.png"
         },
         {
             "name": "All meat burger",
-            "description": "Beef, Bacon, Dill pickles, Smoked cheese, Ketchup, BBQ sauce.",
-            "price": 15.90
+            "description": "Beef, bacon, dill pickles, smoked cheese, ketchup, BBQ sauce.",
+            "price": 15.90,
+            "image": "All meat burger.png"
         },
         {
             "name": "Beef red burger",
-            "description": "Beef, Cheese, Tomatoes, Lettuce, Onion.",
-            "price": 14.90
+            "description": "Beef, cheese, tomatoes, lettuce, onion.",
+            "price": 14.90,
+            "image": "Beef red burger.png"
         },
         {
-            "name": "Blg chicken burger",
-            "description": "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper.",
-            "price": 15.90
+            "name": "Big chicken burger",
+            "description": "Chicken, cheese, tomatoes, lettuce, onion, bell pepper.",
+            "price": 15.90,
+            "image": "Big chicken burger.png"
         }
     ],
     "pizza": [
         {
-            "name": "Margherita Pizza",
-            "description": "Classic pizza with tomato sauce, mozzarella cheese, and fresh basil.",
-            "price": 12.99
+            "name": "Pizza Margherita",
+            "description": "Tomato sauce, mozzarella, fresh basil.",
+            "price": 11.90,
+            "image": "Pizza Margherita.png"
         },
         {
-            "name": "Pepperoni Pizza",
-            "description": "Tomato sauce, mozzarella cheese, and pepperoni slices.",
-            "price": 14.99
+            "name": "Pizza Chorizo",
+            "description": "Tomato sauce, mozzarella, chorizo, chili.",
+            "price": 13.90,
+            "image": "Pizza Chorizo.png"
         },
         {
-            "name": "Vegetarian Pizza",
-            "description": "Tomato sauce, mozzarella cheese, and a variety of fresh vegetables.",
-            "price": 13.99
+            "name": "Funghi",
+            "description": "Tomato sauce, mozzarella, mushrooms.",
+            "price": 12.90,
+            "image": "Funghi.png"
         },
         {
-            "name": "Vegetarian Pizza",
-            "description": "Tomato sauce, mozzarella cheese, and a variety of fresh vegetables.",
-            "price": 13.99
+            "name": "Quattro Formaggi with Chicken",
+            "description": "Tomato sauce, four cheeses, chicken.",
+            "price": 15.90,
+            "image": "Quattro Formaggi with Chicken.png"
         }
     ],
     "salads": [
         {
-            "name": "Caesar Salad",
-            "description": "Crisp romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
-            "price": 7.99
+            "name": "Warm beef arugula salad",
+            "description": "Warm beef, arugula, mixed greens, parmesan.",
+            "price": 16.90,
+            "image": "Warm beef arugula salad.png"
         },
         {
-            "name": "Greek Salad",
-            "description": "Mixed greens with feta cheese, olives, cucumbers, and Greek dressing.",
-            "price": 8.49
+            "name": "Mini green Salad",
+            "description": "Fresh greens, cucumber, carrot, lemon dressing.",
+            "price": 7.90,
+            "image": "Mini green Salad.png"
         },
         {
-            "name": "Garden Salad",
-            "description": "Fresh mixed greens with tomatoes, cucumbers, carrots, and your choice of dressing.",
-            "price": 6.99
+            "name": "Green Salad with sea food",
+            "description": "Mixed greens, seafood, herbs, citrus dressing.",
+            "price": 16.90,
+            "image": "Green Salad with sea food.png"
         },
         {
-            "name": "Garden Salad",
-            "description": "Fresh mixed greens with tomatoes, cucumbers, carrots, and your choice of dressing.",
-            "price": 6.99
+            "name": "Vegan green salad with tofu",
+            "description": "Fresh greens, tofu, nuts, vegan dressing.",
+            "price": 14.90,
+            "image": "Vegan green salad with tofu.png"
         }
     ]
 };
+
