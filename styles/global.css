@@ -126,6 +126,14 @@ table {
 
 
 
+@media (max-width: 930px) {
+    h1 {
+        font-size: 36px;
+    }
+}
+
+
+
 @media (max-width: 780px) {
     #mobilePreview {
         display: block;
@@ -156,12 +164,6 @@ table {
         width: 150px;
     }
 
-
-}
-
-
-
-@media (max-width: 780px) {
     .mobile-card {
         display: block;
         position: fixed;
