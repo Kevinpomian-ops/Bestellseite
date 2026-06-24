@@ -65,6 +65,31 @@ function removeFromBasket(index) {
     renderAllMenus();
 }
 
+// function openCheckout() {
+//     const basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+//     const container = document.getElementById('checkoutItems');
+//     const totalText = document.getElementById('checkoutTotal');
+
+//     container.innerHTML = '';
+
+//     let total = 0;
+
+//     basket.forEach(item => {
+//         container.innerHTML += renderCheckoutItem(item);
+//         total += item.price * item.quantity;
+//     });
+
+//     totalText.innerHTML = renderCheckoutTotal(total);
+
+
+//     if (typeof window.hideMobileBasketPanel === 'function') {
+//         window.hideMobileBasketPanel();
+//     }
+
+//     document.getElementById('checkoutModal').classList.remove('hidden');
+// }
+
 function openCheckout() {
     const basket = JSON.parse(localStorage.getItem('basket')) || [];
 
@@ -82,7 +107,7 @@ function openCheckout() {
 
     totalText.innerHTML = renderCheckoutTotal(total);
 
-    // close mobile basket overlay before opening checkout dialog
+
     if (typeof window.hideMobileBasketPanel === 'function') {
         window.hideMobileBasketPanel();
     }
@@ -97,7 +122,7 @@ function init() {
 
 window.addEventListener('DOMContentLoaded', init);
 
-// Mobile: toggle basket panel via bottom nav basket button; hide when clicking outside
+
 function enableMobileBasketToggle() {
     const basketPanel = document.querySelector('.basket');
     const navBasketBtn = document.getElementById('navBasket');
@@ -115,7 +140,7 @@ function enableMobileBasketToggle() {
         document.body.removeEventListener('click', outsideClick, true);
     }
 
-    // expose hide function so Buy now can close the panel
+
     window.hideMobileBasketPanel = hideBasket;
 
     function outsideClick(e) {
@@ -133,16 +158,15 @@ function enableMobileBasketToggle() {
 
     mobileQuery.addEventListener('change', (ev) => {
         if (!ev.matches) {
-            // leaving mobile: ensure basket visible in desktop layout and cleanup
+
             hideBasket();
             basketPanel.style.display = '';
         } else {
-            // entering mobile: ensure panel hidden until toggled
+
             hideBasket();
         }
     });
 
-    // initial state
     if (mobileQuery.matches) hideBasket();
 }
 
@@ -151,23 +175,7 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', enableMobileBasketToggle);
 });
 
-// Fallback: if nav images are missing, replace them with emoji
-function setupNavIconFallback() {
-    const map = {
-        navHome: '🏠',
-        navSearch: '🔍',
-        navBasket: '🧺',
-        navProfile: '👤'
-    };
-    document.querySelectorAll('.bottom-nav .nav-btn img').forEach(img => {
-        img.addEventListener('error', () => {
-            const btn = img.closest('.nav-btn');
-            if (!btn) return;
-            try { btn.removeChild(img); } catch (e) {}
-            btn.textContent = map[btn.id] || '';
-        });
-    });
-}
+
 
 window.addEventListener('DOMContentLoaded', setupNavIconFallback);
 

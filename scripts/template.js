@@ -69,7 +69,10 @@ function renderBasketSummary(subtotal, delivery, total) {
 }
 
 function renderEmptyBasket() {
-    return '<p class="basket-empty">Add produkt to basket</p>';
+    return `
+    <p class="basket-empty">Nothing here yet Go ahead and choose something delicious!</p>
+        <img class="basket-empty-img" src="./assets/icon/shopping_cart.svg" alt="shopping cart">
+    `;
 }
 
 function renderCheckoutItem(item) {

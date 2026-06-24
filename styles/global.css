@@ -124,17 +124,15 @@ table {
     background-color: #FDEADC;
 }
 
-
-
-@media (max-width: 930px) {
-    h1 {
-        font-size: 36px;
-    }
+@media (max-width: 780px) {
+    
 }
 
+@media (max-width: 479px) {
+    
+}
 
-
-@media (max-width: 780px) {
+@media (max-width: 760px) {
     #mobilePreview {
         display: block;
     }
@@ -246,3 +244,13 @@ table {
 
     }
 }
+
+@media (max-width: 992px) {
+    h1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 1200px) {}
+
+@media (min-width: 1440px) {}

@@ -98,19 +98,9 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 860px) {
-    .menu-item {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 479px) {}
 
-    .menu-item-price {
-        justify-items: start;
-    }
-}
-
-
-
-@media (max-width: 780px) {
+@media (max-width: 760px) {
 
     .category-burger h3,
     .category-pizza h3,
@@ -126,3 +116,17 @@
         width: 100%;
     }
 }
+
+@media (max-width: 992px) {
+    .menu-item {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-item-price {
+        justify-items: start;
+    }
+}
+
+@media (max-width: 1200px) {}
+
+@media (min-width: 1440px) {}
